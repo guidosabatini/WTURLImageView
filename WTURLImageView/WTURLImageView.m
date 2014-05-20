@@ -124,6 +124,10 @@ static CGFloat transitionDuration = 0.45f;
     {
         // no image failed
         if (failedImage) self.image = failedImage;
+        if ([_delegate respondsToSelector:@selector(URLImageViewDidChangeImageWithFailure:)])
+        {
+            [_delegate URLImageViewDidChangeImageWithFailure:self];
+        }
         return;
     }
     
@@ -131,11 +135,19 @@ static CGFloat transitionDuration = 0.45f;
     // scale image
     image = [self resizedImage:image fillType:fillType];
     if ((fromCache && !(options & WTURLImageViewOptionAnimateEvenCache)) || effect==UIViewAnimationOptionTransitionNone) {
+        if ([_delegate respondsToSelector:@selector(URLImageViewDidChangeImageWithSuccess:)])
+        {
+            [_delegate URLImageViewDidChangeImageWithSuccess:self];
+        }
         self.image = image;
     }
     else {
         // show image with animation
-        [self wt_makeTransition: image effect:effect];
+        if ([_delegate respondsToSelector:@selector(URLImageViewDidChangeImageWithSuccess:)])
+        {
+            [_delegate URLImageViewDidChangeImageWithSuccess:self];
+        }
+        [self wt_makeTransition:image effect:effect];
     }
 }
 

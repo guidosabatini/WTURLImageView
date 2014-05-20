@@ -107,4 +107,22 @@
     
 }
 
+- (IBAction)doSetDelegate:(UISwitch*)sender {
+    self.imageView.delegate = sender.isOn ? self : nil;
+}
+
+#pragma mark - WTURLImageViewDelegate
+
+-(void)URLImageViewDidChangeImageWithSuccess:(WTURLImageView *)imageView
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Image changed with success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)URLImageViewDidChangeImageWithFailure:(WTURLImageView *)imageView
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Image change failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WTURLImageView.h"
 
-@interface WTViewController : UIViewController
+@interface WTViewController : UIViewController <WTURLImageViewDelegate>
 
 @property (weak, nonatomic) IBOutlet WTURLImageView *imageView;
 
@@ -20,5 +20,6 @@
 - (IBAction)doActivityIndicator:(id)sender;
 - (IBAction)doTransition:(id)sender;
 - (IBAction)doResize:(id)sender;
+- (IBAction)doSetDelegate:(id)sender;
 
 @end
