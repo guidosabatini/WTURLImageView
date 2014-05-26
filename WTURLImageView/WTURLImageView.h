@@ -53,8 +53,8 @@ typedef NS_OPTIONS(NSUInteger, WTURLImageViewOptions) {
 // with userInteraction is set in the view, user can receive click event
 @protocol WTURLImageViewDelegate <NSObject>
 - (void) URLImageViewDidClicked : (WTURLImageView*)imageView;
-- (void) URLImageViewDidChangeImageWithSuccess : (WTURLImageView*)imageView;
-- (void) URLImageViewDidChangeImageWithFailure : (WTURLImageView*)imageView;
+- (void) URLImageView:(WTURLImageView*)imageView didChangeImageWithSuccess:(UIImage*)newImage;
+- (void) URLImageViewDidChangeImageWithFailure:(WTURLImageView*)imageView;
 @end
 
 
