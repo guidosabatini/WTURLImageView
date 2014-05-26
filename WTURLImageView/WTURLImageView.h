@@ -38,7 +38,7 @@ typedef NS_OPTIONS(NSUInteger, WTURLImageViewOptions) {
     
     WTURLImageViewOptionTransitionFlipFromLeft      = 8 << 20,
     WTURLImageViewOptionTransitionFlipFromRight     = 9 << 20,
-
+    
     WTURLImageViewOptionTransitionRipple            = 10 << 20,
     WTURLImageViewOptionTransitionCubeFromTop       = 11 << 20,
     WTURLImageViewOptionTransitionCubeFromLeft      = 12 << 20,
@@ -53,8 +53,8 @@ typedef NS_OPTIONS(NSUInteger, WTURLImageViewOptions) {
 // with userInteraction is set in the view, user can receive click event
 @protocol WTURLImageViewDelegate <NSObject>
 - (void) URLImageViewDidClicked : (WTURLImageView*)imageView;
-- (void) URLImageViewDidChangeImageWithSuccess : (WTURLImageView*)imageView;
-- (void) URLImageViewDidChangeImageWithFailure : (WTURLImageView*)imageView;
+- (void) URLImageView:(WTURLImageView*)imageView didChangeImageWithSuccess:(UIImage*)newImage;
+- (void) URLImageViewDidChangeImageWithFailure:(WTURLImageView*)imageView;
 @end
 
 

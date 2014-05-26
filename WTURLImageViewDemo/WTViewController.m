@@ -113,7 +113,7 @@
 
 #pragma mark - WTURLImageViewDelegate
 
-- (void)URLImageViewDidChangeImageWithSuccess:(WTURLImageView *)imageView
+- (void)URLImageView:(WTURLImageView *)imageView didChangeImageWithSuccess:(UIImage *)newImage
 {
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:@"Image changed with success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];

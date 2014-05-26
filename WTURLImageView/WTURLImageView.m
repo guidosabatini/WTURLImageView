@@ -119,7 +119,7 @@ static CGFloat transitionDuration = 0.45f;
         UIActivityIndicatorView *aiv = [self activityIndicator];
         [aiv stopAnimating];
     }
-
+    
     if (image==nil)
     {
         // no image failed
@@ -135,19 +135,19 @@ static CGFloat transitionDuration = 0.45f;
     // scale image
     image = [self resizedImage:image fillType:fillType];
     if ((fromCache && !(options & WTURLImageViewOptionAnimateEvenCache)) || effect==UIViewAnimationOptionTransitionNone) {
-        if ([_delegate respondsToSelector:@selector(URLImageViewDidChangeImageWithSuccess:)])
-        {
-            [_delegate URLImageViewDidChangeImageWithSuccess:self];
-        }
         self.image = image;
+        if ([_delegate respondsToSelector:@selector(URLImageView:didChangeImageWithSuccess:)])
+        {
+            [_delegate URLImageView:self didChangeImageWithSuccess:image];
+        }
     }
     else {
         // show image with animation
-        if ([_delegate respondsToSelector:@selector(URLImageViewDidChangeImageWithSuccess:)])
-        {
-            [_delegate URLImageViewDidChangeImageWithSuccess:self];
-        }
         [self wt_makeTransition: image effect:effect];
+        if ([_delegate respondsToSelector:@selector(URLImageView:didChangeImageWithSuccess:)])
+        {
+            [_delegate URLImageView:self didChangeImageWithSuccess:image];
+        }
     }
 }
 
@@ -269,7 +269,7 @@ diskCacheTimeoutInterval:(NSTimeInterval)diskCacheTimeInterval  // set to 0 will
          options:preset.options
 placeholderImage:preset.placeholderImage
      failedImage:preset.failedImage
-     diskCacheTimeoutInterval:preset.diskCacheTimeInterval];
+diskCacheTimeoutInterval:preset.diskCacheTimeInterval];
 }
 
 - (void) reloadWithPreset : (WTURLImageViewPreset*)preset
